@@ -28,6 +28,16 @@
       100%{background-position:0% 50%;}
     }
 
+    /* 🎮 PS4 STYLE PARTICLES */
+    #bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     .fade {
       opacity:0;
       transform:translateY(20px);
@@ -60,37 +70,36 @@
     }
 
     .badge {
-  display: inline-block;
-  padding: 6px 14px;
-  background: #22c55e;
-  color: #04120a;
-  border-radius: 999px;
-  font-weight: 600;
+      display: inline-block;
+      padding: 6px 14px;
+      background: #22c55e;
+      color: #04120a;
+      border-radius: 999px;
+      font-weight: 600;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
 
-  margin-top: 15px;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-   .avatar {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 15px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #1f2937;
-  box-shadow: 0 0 0 3px #38bdf8, 0 10px 25px rgba(0,0,0,0.4);
-}
+    .avatar {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1f2937;
+      box-shadow: 0 0 0 3px #38bdf8, 0 10px 25px rgba(0,0,0,0.4);
+    }
 
     .avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     header h1 { font-size:3rem; }
     header p { color:#94a3b8; margin-top:10px; }
@@ -129,16 +138,6 @@
       background:linear-gradient(90deg,#38bdf8,#0ea5e9);
     }
 
-    .btn {
-      padding:12px 20px;
-      border-radius:10px;
-      font-weight:600;
-      text-decoration:none;
-      display:inline-block;
-    }
-
-    .primary { background:#38bdf8; color:#020617; }
-
     iframe {
       width:100%;
       height:600px;
@@ -155,6 +154,9 @@
 </head>
 
 <body>
+
+<!-- 🎮 PARTICLE CANVAS -->
+<canvas id="bg"></canvas>
 
 <a class="sticky-hire" href="#contact">Hire Me</a>
 
@@ -173,24 +175,14 @@
 <section class="fade">
   <h2>About Me</h2>
   <div class="card">
-    I am a detail-oriented and reliable Virtual Assistant from the Philippines with a strong focus on accuracy, efficiency, and organization. I specialize in data entry, online research, and administrative support, helping businesses reduce workload and improve daily operations.
-
-I take pride in delivering clean, well-organized, and error-free work. I am comfortable working with minimal supervision and can quickly adapt to new tools, systems, and instructions.
-
-My goal is to provide consistent support that allows business owners to focus on growth while I handle repetitive and time-consuming tasks.
+    I am a detail-oriented and reliable Virtual Assistant from the Philippines...
   </div>
 </section>
 
 <section class="fade">
   <h2>Why Hire Me</h2>
   <div class="card">
-    You should hire me because I combine reliability, attention to detail, and a strong work ethic with a commitment to delivering quality results on time.
-
-I am highly adaptable and can quickly learn new processes or tools without extensive training. I follow instructions carefully and ensure that tasks are completed accurately and efficiently.
-
-I am also consistent and disciplined in my work approach, which makes me dependable for long-term support. My focus is not just to complete tasks, but to help improve workflow efficiency and reduce your workload.
-
-If you are looking for a Virtual Assistant who is responsible, easy to work with, and focused on quality output, I am ready to support your business.
+    You should hire me because I combine reliability, attention to detail...
   </div>
 </section>
 
@@ -204,31 +196,13 @@ If you are looking for a Virtual Assistant who is responsible, easy to work with
   </div>
 </section>
 
-<!-- SERVICES ADDED -->
 <section class="fade">
   <h2>Services I Offer</h2>
   <div class="grid">
-
-    <div class="card">
-      <b>Data Entry</b><br><br>
-      Accurate input, organization, and management of data in spreadsheets and systems with attention to detail.
-    </div>
-
-    <div class="card">
-      <b>Online Research</b><br><br>
-      Gathering verified and structured information from reliable sources for business use.
-    </div>
-
-    <div class="card">
-      <b>Administrative Support</b><br><br>
-      Helping manage daily tasks like file organization, workflow tracking, and general admin duties.
-    </div>
-
-    <div class="card">
-      <b>Email Management</b><br><br>
-      Organizing inboxes, sorting messages, and improving communication efficiency.
-    </div>
-
+    <div class="card"><b>Data Entry</b><br><br>Accurate data handling...</div>
+    <div class="card"><b>Online Research</b><br><br>Verified information gathering...</div>
+    <div class="card"><b>Administrative Support</b><br><br>Workflow and file management...</div>
+    <div class="card"><b>Email Management</b><br><br>Inbox organization and filtering...</div>
   </div>
 </section>
 
@@ -261,6 +235,49 @@ If you are looking for a Virtual Assistant who is responsible, easy to work with
 <footer>
   © 2026 Nin Mark Juanite
 </footer>
+
+<!-- 🎮 PARTICLE SCRIPT -->
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "rgba(56, 189, 248, 0.5)";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
 
 </body>
 </html>
