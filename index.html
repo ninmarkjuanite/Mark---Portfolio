@@ -355,25 +355,43 @@ function draw() {
 
 draw();
 </script>
-  <!-- SOUND BUTTON FUNCTION -->
-<script>
 
+<!-- 🔊 SOUND BUTTON -->
+<button onclick="toggleSound()" style="
+  position:fixed;
+  bottom:70px;
+  right:18px;
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  background:#38bdf8;
+  color:#020617;
+  font-weight:700;
+  cursor:pointer;
+  z-index:999;
+">
+🔊 Sound
+</button>
+
+<!-- 🔊 AUDIO -->
 <audio id="bgSound" loop>
   <source src="ambient.mp3" type="audio/mpeg">
 </audio>
-  <script>
+
+<!-- 🔊 SOUND SYSTEM -->
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const sound = document.getElementById("bgSound");
 
-  // safe default volume
+  // subtle volume
   sound.volume = 0.08;
 
-  // unlock audio on first user click
+  // unlock audio on first click (browser rule)
   document.addEventListener("click", () => {
     sound.play().catch(() => {});
   }, { once: true });
 
-  // toggle function (button)
+  // toggle sound
   window.toggleSound = function () {
     if (sound.paused) {
       sound.play();
@@ -383,5 +401,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 });
 </script>
+
 </body>
 </html>
