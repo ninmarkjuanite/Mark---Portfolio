@@ -355,44 +355,33 @@ function draw() {
 
 draw();
 </script>
-  <audio id="bgSound" autoplay loop>
-  <source src="ambient.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-document.addEventListener("click", function () {
-  const audio = document.getElementById("bgSound");
-  audio.volume = 0.2;
-  audio.play();
-}, { once: true });
-</script>
-  <audio id="bgSound" loop>
-  <source src="ambient.mp3" type="audio/mpeg">
-</audio>
-
+  <!-- SOUND BUTTON FUNCTION -->
 <script>
 const sound = document.getElementById("bgSound");
 
+// default volume
+sound.volume = 0.08;
+
+// play on first click
 document.addEventListener("click", () => {
-  sound.volume = 0.08; // subtle business ambience
   sound.play();
 }, { once: true });
-</script>
-  <script>
-const sound = document.getElementById("bgSound");
 
-document.addEventListener("click", () => {
-  sound.volume = 0;
-  sound.play();
-
-  let fade = setInterval(() => {
-    if (sound.volume < 0.12) {
-      sound.volume += 0.01;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
-}, { once: true });
+// toggle sound
+function toggleSound(){
+  if(sound.paused){
+    sound.play();
+  } else {
+    sound.pause();
+  }
+}
 </script>
+
+<!-- AUDIO -->
+<audio id="bgSound" loop>
+  <source src="ambient.mp3" type="audio/mpeg">
+</audio>
+
+
 </body>
 </html>
