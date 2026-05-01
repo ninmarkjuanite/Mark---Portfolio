@@ -204,6 +204,21 @@ header h1 {
 
 <a class="sticky-hire" href="#contact">Hire Me</a>
 
+  <button onclick="toggleSound()" style="
+  position:fixed;
+  bottom:70px;
+  right:18px;
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  background:#38bdf8;
+  color:#020617;
+  font-weight:700;
+  cursor:pointer;
+  z-index:999;
+">
+🔊 Sound
+</button>
 <header class="fade">
   <div class="avatar">
     <img src="sds.png" alt="Nin Mark Juanite" />
@@ -339,6 +354,45 @@ function draw() {
 }
 
 draw();
+</script>
+  <audio id="bgSound" autoplay loop>
+  <source src="ambient.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("click", function () {
+  const audio = document.getElementById("bgSound");
+  audio.volume = 0.2;
+  audio.play();
+}, { once: true });
+</script>
+  <audio id="bgSound" loop>
+  <source src="ambient.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const sound = document.getElementById("bgSound");
+
+document.addEventListener("click", () => {
+  sound.volume = 0.08; // subtle business ambience
+  sound.play();
+}, { once: true });
+</script>
+  <script>
+const sound = document.getElementById("bgSound");
+
+document.addEventListener("click", () => {
+  sound.volume = 0;
+  sound.play();
+
+  let fade = setInterval(() => {
+    if (sound.volume < 0.12) {
+      sound.volume += 0.01;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
+}, { once: true });
 </script>
 </body>
 </html>
