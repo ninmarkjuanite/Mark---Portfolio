@@ -204,7 +204,7 @@ header h1 {
 
 <a class="sticky-hire" href="#contact">Hire Me</a>
 
-  <button onclick="toggleSound()" style="
+<button onclick="toggleSound()" style="
   position:fixed;
   bottom:70px;
   right:18px;
@@ -357,31 +357,31 @@ draw();
 </script>
   <!-- SOUND BUTTON FUNCTION -->
 <script>
-const sound = document.getElementById("bgSound");
 
-// default volume
-sound.volume = 0.08;
-
-// play on first click
-document.addEventListener("click", () => {
-  sound.play();
-}, { once: true });
-
-// toggle sound
-function toggleSound(){
-  if(sound.paused){
-    sound.play();
-  } else {
-    sound.pause();
-  }
-}
-</script>
-
-<!-- AUDIO -->
 <audio id="bgSound" loop>
   <source src="ambient.mp3" type="audio/mpeg">
 </audio>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sound = document.getElementById("bgSound");
 
+  // safe default volume
+  sound.volume = 0.08;
 
+  // unlock audio on first user click
+  document.addEventListener("click", () => {
+    sound.play().catch(() => {});
+  }, { once: true });
+
+  // toggle function (button)
+  window.toggleSound = function () {
+    if (sound.paused) {
+      sound.play();
+    } else {
+      sound.pause();
+    }
+  };
+});
+</script>
 </body>
 </html>
