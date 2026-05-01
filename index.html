@@ -13,6 +13,13 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
 
+    :root {
+  --primary: #a78bfa;
+  --secondary: #38bdf8;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+}
+
     body {
       font-family:'Poppins',sans-serif;
       background: linear-gradient(-45deg,#050814,#0b1220,#0f172a,#020617);
@@ -99,17 +106,17 @@ header h1 {
   }
 }
     .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #22c55e;
-      color: #04120a;
-      border-radius: 999px;
-      font-weight: 600;
-      margin-top: 15px;
-      margin-bottom: 10px;
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
+  display: inline-block;
+  padding: 6px 14px;
+  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+  color: #020617;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 0 15px rgba(167,139,250,0.25);
+}
 
     .avatar {
       width: 120px;
@@ -130,16 +137,22 @@ header h1 {
       object-fit: cover;
     }
 
-    header h1 { font-size:3rem; }
+    header h1 {
+  font-size:3rem;
+  color: var(--secondary);
+  text-shadow: 0 0 18px rgba(56,189,248,0.25);
+}
     header p { color:#94a3b8; margin-top:10px; }
 
     section { max-width:1050px; margin:auto; padding:70px 20px; }
 
     h2 {
-      border-left:4px solid #38bdf8;
-      padding-left:12px;
-      margin-bottom:20px;
-    }
+  border-left:4px solid var(--primary);
+  padding-left:12px;
+  margin-bottom:20px;
+  color: var(--primary);
+  text-shadow: 0 0 12px rgba(167,139,250,0.25);
+}
 
     .card {
       background:rgba(17,24,39,0.92);
@@ -194,6 +207,9 @@ header h1 {
       padding:40px;
       color:#64748b;
     }
+    p {
+  color: var(--muted);
+}
     @keyframes pulseGlow {
   0% {
     box-shadow: 0 0 10px rgba(56,189,248,0.4);
